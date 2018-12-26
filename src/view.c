@@ -6,12 +6,13 @@
 #include <SDL2_gfxPrimitives.h>
 #include "physics.h"
 #include "view.h"
+#include "logic.h"
+#include "structs.h"
 
 //const int bullet_lifetime = 10000;
 
 const int EXIT = 2;
-const int SHOOT = 3;
-//const int draw_bull = 3;
+//const int SHOOT = 3;
 const int bullet_radius = 4;
 
 void draw_tank(SDL_Renderer * renderer ,Tank * tank){
@@ -19,8 +20,14 @@ void draw_tank(SDL_Renderer * renderer ,Tank * tank){
 }
 
 void draw_bullet(SDL_Renderer * renderer, Bullet * bullet){
-    filledCircleRGBA(renderer, bullet -> x, bullet -> y, bullet_radius, 0, 0, 0, 255);
+    filledCircleRGBA(renderer, bullet->x, bullet->y, bullet_radius, 0, 0, 0, 255);
     move_bullet(bullet);
+}
+
+void draw_walls(SDL_Renderer * renderer, Wall * walls, int number_of_walls){
+    for (int i=0; i<number_of_walls; i++)
+        boxRGBA(renderer, walls[i].x1, walls[i].y1,
+                walls[i].x2, walls[i].y2, 0, 0, 0, 255);
 }
 
 void init_window(SDL_Renderer * renderer){
@@ -39,7 +46,8 @@ bool quit_window(SDL_Window * window, SDL_Renderer * renderer){
     }
 }
 
-int handle_events(SDL_Renderer * renderer, Map * map){
+int handle_events(Map * map){
+    const int collision = 2, no_collision = 1;
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT)
@@ -47,16 +55,20 @@ int handle_events(SDL_Renderer * renderer, Map * map){
         if (event.type == SDL_KEYDOWN){
             switch (event.key.keysym.sym){
                 case SDLK_UP:
-                    move_tank(event.key.keysym.sym, map -> tanks);
+                    //if (movement_collides_walls(map->tanks, map) == no_collision)
+                    move_tank(event.key.keysym.sym, map->tanks);
+                    break;
+                case  SDLK_DOWN:
+                    move_tank(event.key.keysym.sym, map->tanks);
                     break;
                 case SDLK_RIGHT:
-                    move_tank(event.key.keysym.sym, map -> tanks);
+                    turn_tank(event.key.keysym.sym, map->tanks);
                     break;
                 case SDLK_LEFT:
-                    move_tank(event.key.keysym.sym, map -> tanks);
+                    turn_tank(event.key.keysym.sym, map->tanks);
                     break;
                 case SDLK_e:
-                    fire(map -> tanks);
+                    fire(map->tanks);
             }
         }
     }

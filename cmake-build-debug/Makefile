@@ -123,6 +123,33 @@ FoP_Project/fast:
 	$(MAKE) -f CMakeFiles/FoP_Project.dir/build.make CMakeFiles/FoP_Project.dir/build
 .PHONY : FoP_Project/fast
 
+src/logic.o: src/logic.c.o
+
+.PHONY : src/logic.o
+
+# target to build an object file
+src/logic.c.o:
+	$(MAKE) -f CMakeFiles/FoP_Project.dir/build.make CMakeFiles/FoP_Project.dir/src/logic.c.o
+.PHONY : src/logic.c.o
+
+src/logic.i: src/logic.c.i
+
+.PHONY : src/logic.i
+
+# target to preprocess a source file
+src/logic.c.i:
+	$(MAKE) -f CMakeFiles/FoP_Project.dir/build.make CMakeFiles/FoP_Project.dir/src/logic.c.i
+.PHONY : src/logic.c.i
+
+src/logic.s: src/logic.c.s
+
+.PHONY : src/logic.s
+
+# target to generate assembly for a file
+src/logic.c.s:
+	$(MAKE) -f CMakeFiles/FoP_Project.dir/build.make CMakeFiles/FoP_Project.dir/src/logic.c.s
+.PHONY : src/logic.c.s
+
 src/main.o: src/main.c.o
 
 .PHONY : src/main.o
@@ -240,6 +267,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... FoP_Project"
 	@echo "... edit_cache"
+	@echo "... src/logic.o"
+	@echo "... src/logic.i"
+	@echo "... src/logic.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

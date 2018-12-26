@@ -3,9 +3,10 @@
 #define FOP_PROJECT_VIEW_H
 
 void init_window(SDL_Renderer *);
-int handle_events(SDL_Renderer * renderer, Map * map);
+int handle_events(Map * map);
 void draw_tank(SDL_Renderer * renderer, Tank * tank);
 void draw_bullet(SDL_Renderer * renderer, Bullet * bullet);
+void draw_walls(SDL_Renderer * renderer, Wall * walls, int number_of_walls);
 bool quit_window(SDL_Window *, SDL_Renderer *);
 
 #endif

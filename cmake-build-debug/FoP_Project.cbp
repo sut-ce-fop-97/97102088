@@ -78,6 +78,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/logic.c">
+			<Option target="FoP_Project"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/logic.h">
+			<Option target="FoP_Project"/>
+		</Unit>
 		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/main.c">
 			<Option target="FoP_Project"/>
 		</Unit>

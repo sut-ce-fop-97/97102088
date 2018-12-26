@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/FoP_Project.dir/src/logic.c.o"
   "CMakeFiles/FoP_Project.dir/src/main.c.o"
   "CMakeFiles/FoP_Project.dir/src/physics.c.o"
   "CMakeFiles/FoP_Project.dir/src/simple_snake.c.o"

@@ -13,6 +13,8 @@ typedef struct {
 
 typedef struct {
     int x, y, length;
+    //int right_corner_x, right_corner_y;
+    //int left_corner_x, left_corner_y;
     double angle, thickness;
     Bullet * bullets;
     int remaining_bullets;
@@ -21,6 +23,7 @@ typedef struct {
 typedef struct {
     Tank * tanks;
     Wall * walls;
+    int number_of_walls;
 } Map;
 
 #endif
