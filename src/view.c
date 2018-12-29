@@ -16,7 +16,8 @@ const int EXIT = 2;
 const int bullet_radius = 4;
 
 void draw_tank(SDL_Renderer * renderer ,Tank * tank){
-    filledPieRGBA(renderer, tank->x, tank->y, tank->length, tank->angle , tank->angle + tank->thickness, 255, 0, 0, 255);
+    filledCircleRGBA(renderer, tank->x, tank->y, tank->radius, 255, 0, 0, 255);
+    filledPieRGBA(renderer, tank->x, tank->y, tank->radius, tank->angle - tank->thickness/2 , tank->angle + tank->thickness/2, 0, 0, 255, 255);
 }
 
 void draw_bullet(SDL_Renderer * renderer, Bullet * bullet){
@@ -34,20 +35,19 @@ void init_window(SDL_Renderer * renderer){
     SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
 }
 
-bool quit_window(SDL_Window * window, SDL_Renderer * renderer){
+void quit_window(SDL_Window * window, SDL_Renderer * renderer){
     SDL_Event quit;
     while (SDL_PollEvent(&quit)) {
         if (quit.type==SDL_QUIT) {
             SDL_DestroyRenderer(renderer);
             SDL_DestroyWindow(window);
             SDL_Quit();
-            return  true;
         }
     }
 }
 
 int handle_events(Map * map){
-    const int collision = 2, no_collision = 1;
+    const int no_collision = 1;
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT)
@@ -55,11 +55,12 @@ int handle_events(Map * map){
         if (event.type == SDL_KEYDOWN){
             switch (event.key.keysym.sym){
                 case SDLK_UP:
-                    //if (movement_collides_walls(map->tanks, map) == no_collision)
-                    move_tank(event.key.keysym.sym, map->tanks);
+                    if (movement_collides_walls(map->tanks, map) == no_collision)
+                        move_tank(event.key.keysym.sym, map->tanks);
                     break;
                 case  SDLK_DOWN:
-                    move_tank(event.key.keysym.sym, map->tanks);
+                    //if (movement_collides_walls(map->tanks, map) == no_collision)
+                        move_tank(event.key.keysym.sym, map->tanks);
                     break;
                 case SDLK_RIGHT:
                     turn_tank(event.key.keysym.sym, map->tanks);

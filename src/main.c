@@ -35,20 +35,20 @@ void read_map_and_init_mapsize(Map * map, char * file_path, int * map_height, in
     //printf("num of walls: %d \n", map->number_of_walls);
     for (int i=0; i<map->number_of_walls; i++){
         fscanf(map_file_pointer, "%s", temp);
-            map->walls[i].x1 = string_to_int(temp) * map_scale;
+        map->walls[i].x1 = string_to_int(temp) * map_scale;
         fscanf(map_file_pointer, "%s", temp);
-            map->walls[i].y1 = string_to_int(temp) * map_scale;
+        map->walls[i].y1 = string_to_int(temp) * map_scale;
         fscanf(map_file_pointer, "%s", temp);
-            map->walls[i].x2 = string_to_int(temp) * map_scale;
-            if (map->walls[i].x2 > max_width)
-                max_width = map->walls[i].x2;
+        map->walls[i].x2 = string_to_int(temp) * map_scale;
+        if (map->walls[i].x2 > max_width)
+            max_width = map->walls[i].x2;
         fscanf(map_file_pointer, "%s", temp);
-            map->walls[i].y2 = string_to_int(temp) * map_scale;
-            if (map->walls[i].y2 > max_height)
-                max_height = map->walls[i].y2;
-        printf("index: %d | %d %d %d %d\n", i, map->walls[i].x1, map->walls[i].y1, map->walls[i].x2, map->walls[i].y2);
+        map->walls[i].y2 = string_to_int(temp) * map_scale;
+        if (map->walls[i].y2 > max_height)
+            max_height = map->walls[i].y2;
+        //printf("index: %d | %d %d %d %d\n", i, map->walls[i].x1, map->walls[i].y1, map->walls[i].x2, map->walls[i].y2);
     }
-    printf("\n\n");
+    //printf("\n\n");
     *map_height = max_height + 1;
     *map_width = max_width + 1;
     //printf("wid: %d hei: %d", *map_width, *map_height);
@@ -71,22 +71,24 @@ int main(){
     Map * map_1 = malloc(sizeof(Map));
     Tank * tank_1 = malloc(sizeof(Tank));
     read_map_and_init_mapsize(map_1,
-            "D:\\Amir Abbas's Documents\\FoP\\FoP_Project\\src\\3rd_map.txt", &map_height, &map_width);
+                              "D:\\Amir Abbas's Documents\\FoP\\FoP_Project\\src\\3rd_map.txt", &map_height, &map_width);
     tank_1->bullets = malloc(sizeof(Bullet) * Primary_Bullets);
     map_1->tanks = tank_1;
     //tank_1->x = correct_mod(rand(), map_width);
     //tank_1->y = correct_mod(rand(), map_height);
-    tank_1->x = 30;
-    tank_1->y = 530;
+    tank_1->x = 29;
+    tank_1->y = 429;
     decimal_rand = correct_mod(rand(), (int)pow(10, 6)) * pow(10, -6);
     //tank_1->angle = correct_mod(rand(), 360) + decimal_rand;
-    tank_1->angle = 330.0;
+    tank_1->angle = 270.0;
     //printf("%f %f", tank_1->angle, decimal_rand);
     for (int i=0; i<Primary_Bullets; i++)
         tank_1->bullets[i].lifetime = -1;
-    tank_1->length = 40;
+    tank_1->radius = 20;
     tank_1->thickness = 40.0;
     tank_1->remaining_bullets = Primary_Bullets;
+
+    //printf("%f", sin(90.000000 * 3.14159265/180.0));
 
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = SDL_CreateWindow("FoP_Project", 30, 30, map_width, map_height, SDL_WINDOW_OPENGL);
@@ -96,24 +98,24 @@ int main(){
 
         init_window(renderer);
         SDL_RenderClear(renderer);
-            draw_tank(renderer, tank_1);
-            draw_walls(renderer, map_1->walls, map_1->number_of_walls);
-            if (handle_events(map_1) == 2)
-                break;
-            for (int i=0; i<Primary_Bullets; i++) {
-                if (tank_1->bullets[i].lifetime > 0)
-                    draw_bullet(renderer, &tank_1->bullets[i]);
-            }
-/*
+        draw_tank(renderer, tank_1);
+        draw_walls(renderer, map_1->walls, map_1->number_of_walls);
+        if (handle_events(map_1) == 2)
+            break;
+        for (int i=0; i<Primary_Bullets; i++) {
+            if (tank_1->bullets[i].lifetime > 0)
+                draw_bullet(renderer, &tank_1->bullets[i]);
+        }
+
             char* buffer = malloc(sizeof(char) * 20);
-            sprintf(buffer, "angle: %f", tank_1->angle);
+            sprintf(buffer, "angle: %f x: %d y: %d ", tank_1->angle, tank_1->x, tank_1->y);
             printf("%s", buffer);
             stringRGBA(renderer, 5, 5, buffer, 0, 0, 0, 255);
-*/
+
         SDL_RenderPresent(renderer);
         SDL_Delay(1000/FPS);
     }
     quit_window(window, renderer);
 
-    return 0;
+     return 0;
 }

@@ -12,7 +12,7 @@ typedef struct {
 } Bullet;
 
 typedef struct {
-    int x, y, length;
+    int x, y, radius;
     //int right_corner_x, right_corner_y;
     //int left_corner_x, left_corner_y;
     double angle, thickness;

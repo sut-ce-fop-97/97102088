@@ -16,23 +16,36 @@
 //FPS = 30;
 //number_of_seconds = 30;
 const int Primary_Lifetime = 30 * 2;
-const int step = 10, bullet_speed = 4;
+const double step = 4.0, bullet_speed = 6.0;
 const double pi = 3.14159265;
-const double rotation_rate = 4;
+const double rotation_rate = 2.0;
 void move_tank(SDL_Keycode key, Tank * tank){
     switch (key) {
         case SDLK_UP:
-            tank->x -= step * SDL_cos((tank->angle + tank->thickness / 2) * pi / 180);
-            tank->y -= step * SDL_sin((tank->angle + tank->thickness / 2) * pi / 180);
+            if (tank->angle == 270.0) //An exceptional case because of a bug in trigonometric calculations of SDL functions
+                tank->y -= step;
+            else {
+                tank->x += step * cos((tank->angle) / 180.0*pi);
+                tank->y += step * sin((tank->angle) / 180.0*pi);
+            }
+            printf("\n cos: %f sin: %f\n", cos((tank->angle) * pi/180.0), sin((tank->angle) * pi/180.0) );
             break;
         case SDLK_DOWN:
-            tank->x += step * SDL_cos((tank->angle + tank->thickness / 2) * pi / 180);
-            tank->y += step * SDL_sin((tank->angle + tank->thickness / 2) * pi / 180);
+            if (tank->angle == 90.0) //An exceptional case because of a bug in trigonometric calculations of SDL functions
+                tank->y += step;
+            else if (tank->angle == 180.0)
+                tank->x += step; //An exceptional case because of a bug in trigonometric calculations of SDL functions
+            else {
+                tank->x -= step * cos((tank->angle) / 180.0*pi);
+                tank->y -= step * sin((tank->angle) / 180.0*pi);
+            }
+            printf("\n cos: %f sin: %f\n", cos((tank->angle) * pi/180.0), sin((tank->angle) * pi/180.0) );
     }
 }
 
 void turn_tank(SDL_Keycode key, Tank * tank){
     double decimal_part;
+    int integer_part;
     switch (key) {
         case SDLK_RIGHT:
             tank->angle += rotation_rate;
@@ -47,8 +60,8 @@ void turn_tank(SDL_Keycode key, Tank * tank){
 }
 
 void move_bullet(Bullet * bullet){
-    bullet->x -= bullet_speed * SDL_cos( (bullet->angle) * pi /180 );
-    bullet->y -= bullet_speed * SDL_sin( (bullet->angle) * pi /180 );
+    bullet->x += bullet_speed * cos((bullet->angle) * pi/180.0);
+    bullet->y += bullet_speed * sin((bullet->angle) * pi/180.0);
     bullet->lifetime -= 1;
 }
 
@@ -57,7 +70,7 @@ int fire(Tank * tank) {
         tank->bullets [5 - tank->remaining_bullets].lifetime = Primary_Lifetime;
         tank->bullets [5 - tank->remaining_bullets].x = tank->x;
         tank->bullets [5 - tank->remaining_bullets].y = tank->y;
-        tank->bullets [5 - tank->remaining_bullets].angle = tank->angle + tank->thickness / 2;
+        tank->bullets [5 - tank->remaining_bullets].angle = tank->angle;
         tank->remaining_bullets -= 1;
         return 1;
     }
