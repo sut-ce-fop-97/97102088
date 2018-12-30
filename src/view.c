@@ -46,8 +46,9 @@ void quit_window(SDL_Window * window, SDL_Renderer * renderer){
     }
 }
 
-int handle_events(Map * map){
-    const int no_collision = 1;
+int handle_events(Map * map, int * arrow_keys){
+    //const int no_collision = 1;
+    // 'F':forward 'B':backward
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT)
@@ -55,18 +56,52 @@ int handle_events(Map * map){
         if (event.type == SDL_KEYDOWN){
             switch (event.key.keysym.sym){
                 case SDLK_UP:
-                    if (movement_collides_walls(map->tanks, map) == no_collision)
+                    /*
+                    if (movement_collides_walls(map->tanks, map, 'F') == no_collision)
                         move_tank(event.key.keysym.sym, map->tanks);
+                    */
+                    arrow_keys[0] = 1;
                     break;
                 case  SDLK_DOWN:
-                    //if (movement_collides_walls(map->tanks, map) == no_collision)
+                    /*
+                    if (movement_collides_walls(map->tanks, map, 'B') == no_collision)
                         move_tank(event.key.keysym.sym, map->tanks);
-                    break;
-                case SDLK_RIGHT:
-                    turn_tank(event.key.keysym.sym, map->tanks);
+                    */
+                    arrow_keys[1] = 1;
                     break;
                 case SDLK_LEFT:
-                    turn_tank(event.key.keysym.sym, map->tanks);
+                    //turn_tank(event.key.keysym.sym, map->tanks);
+                    arrow_keys[2] = 1;
+                    break;
+                case SDLK_RIGHT:
+                    //turn_tank(event.key.keysym.sym, map->tanks);
+                    arrow_keys[3] = 1;
+                    break;
+            }
+        }
+        else if (event.type == SDL_KEYUP){
+            switch (event.key.keysym.sym){
+                case SDLK_UP:
+                    /*
+                    if (movement_collides_walls(map->tanks, map, 'F') == no_collision)
+                        move_tank(event.key.keysym.sym, map->tanks);
+                    */
+                    arrow_keys[0] = 0;
+                    break;
+                case  SDLK_DOWN:
+                    /*
+                    if (movement_collides_walls(map->tanks, map, 'B') == no_collision)
+                        move_tank(event.key.keysym.sym, map->tanks);
+                    */
+                    arrow_keys[1] = 0;
+                    break;
+                case SDLK_LEFT:
+                    //turn_tank(event.key.keysym.sym, map->tanks);
+                    arrow_keys[2] = 0;
+                    break;
+                case SDLK_RIGHT:
+                    //turn_tank(event.key.keysym.sym, map->tanks);
+                    arrow_keys[3] = 0;
                     break;
                 case SDLK_e:
                     fire(map->tanks);

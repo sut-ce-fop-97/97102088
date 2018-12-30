@@ -18,41 +18,40 @@
 const int Primary_Lifetime = 30 * 2;
 const double step = 4.0, bullet_speed = 6.0;
 const double pi = 3.14159265;
-const double rotation_rate = 2.0;
-void move_tank(SDL_Keycode key, Tank * tank){
+const double rotation_rate = 4.0;
+void move_tank(char key, Tank * tank){
     switch (key) {
-        case SDLK_UP:
+        case 'U':
             if (tank->angle == 270.0) //An exceptional case because of a bug in trigonometric calculations of SDL functions
                 tank->y -= step;
             else {
                 tank->x += step * cos((tank->angle) / 180.0*pi);
                 tank->y += step * sin((tank->angle) / 180.0*pi);
             }
-            printf("\n cos: %f sin: %f\n", cos((tank->angle) * pi/180.0), sin((tank->angle) * pi/180.0) );
+            //printf("\n cos: %f sin: %f\n", cos((tank->angle) * pi/180.0), sin((tank->angle) * pi/180.0) );
             break;
-        case SDLK_DOWN:
+        case 'D':
             if (tank->angle == 90.0) //An exceptional case because of a bug in trigonometric calculations of SDL functions
-                tank->y += step;
+                tank->y -= step;
             else if (tank->angle == 180.0)
                 tank->x += step; //An exceptional case because of a bug in trigonometric calculations of SDL functions
             else {
                 tank->x -= step * cos((tank->angle) / 180.0*pi);
                 tank->y -= step * sin((tank->angle) / 180.0*pi);
             }
-            printf("\n cos: %f sin: %f\n", cos((tank->angle) * pi/180.0), sin((tank->angle) * pi/180.0) );
+            //printf("\n cos: %f sin: %f\n", cos((tank->angle) * pi/180.0), sin((tank->angle) * pi/180.0) );
     }
 }
 
-void turn_tank(SDL_Keycode key, Tank * tank){
+void turn_tank(char key, Tank * tank){
     double decimal_part;
-    int integer_part;
     switch (key) {
-        case SDLK_RIGHT:
+        case 'R':
             tank->angle += rotation_rate;
             decimal_part = tank->angle - (int)tank->angle;
             tank->angle = correct_mod((int)tank->angle, 360) + decimal_part;
             break;
-        case SDLK_LEFT:
+        case 'L':
             tank->angle -= rotation_rate;
             decimal_part = tank->angle - (int)tank->angle;
             tank->angle = correct_mod((int)tank->angle, 360) + decimal_part;

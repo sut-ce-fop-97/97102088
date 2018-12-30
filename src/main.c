@@ -56,10 +56,22 @@ void read_map_and_init_mapsize(Map * map, char * file_path, int * map_height, in
     free(temp);
 }
 
+void move_and_rotate_tank_calling(int * arrow_keys, Tank * tank, Map * map){
+    const int no_collision = 1;
+    if (arrow_keys[0] == 1 && movement_collides_walls(tank, map, 'F') == no_collision)
+        move_tank('U', tank);
+    if (arrow_keys[1] == 1 && movement_collides_walls(tank, map, 'B') == no_collision)
+        move_tank('D', tank);
+    if (arrow_keys[2] == 1)
+        turn_tank('L', tank);
+    if (arrow_keys[3] == 1)
+        turn_tank('R', tank);
+}
+
 int main(){
     //printf("%f", 4 * atan(1));
-
     srand(2);
+    int arrow_keys[4] = {0}; // Up:0 Down:1 Left:2 Right:3
     const double FPS = 30;
     double decimal_rand;
     //const int number_of_seconds = 30;
@@ -100,13 +112,13 @@ int main(){
         SDL_RenderClear(renderer);
         draw_tank(renderer, tank_1);
         draw_walls(renderer, map_1->walls, map_1->number_of_walls);
-        if (handle_events(map_1) == 2)
+        if (handle_events(map_1, arrow_keys) == 2)
             break;
         for (int i=0; i<Primary_Bullets; i++) {
             if (tank_1->bullets[i].lifetime > 0)
                 draw_bullet(renderer, &tank_1->bullets[i]);
         }
-
+        move_and_rotate_tank_calling(arrow_keys, tank_1, map_1);
             char* buffer = malloc(sizeof(char) * 20);
             sprintf(buffer, "angle: %f x: %d y: %d ", tank_1->angle, tank_1->x, tank_1->y);
             printf("%s", buffer);
