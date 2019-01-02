@@ -7,7 +7,6 @@ set(CMAKE_DEPENDS_CHECK_C
   "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/logic.c" "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/logic.c.o"
   "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/main.c" "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/main.c.o"
   "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/physics.c" "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/physics.c.o"
-  "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/simple_snake.c" "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/simple_snake.c.o"
   "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/view.c" "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/view.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

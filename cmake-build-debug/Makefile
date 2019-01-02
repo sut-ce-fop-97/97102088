@@ -204,33 +204,6 @@ src/physics.c.s:
 	$(MAKE) -f CMakeFiles/FoP_Project.dir/build.make CMakeFiles/FoP_Project.dir/src/physics.c.s
 .PHONY : src/physics.c.s
 
-src/simple_snake.o: src/simple_snake.c.o
-
-.PHONY : src/simple_snake.o
-
-# target to build an object file
-src/simple_snake.c.o:
-	$(MAKE) -f CMakeFiles/FoP_Project.dir/build.make CMakeFiles/FoP_Project.dir/src/simple_snake.c.o
-.PHONY : src/simple_snake.c.o
-
-src/simple_snake.i: src/simple_snake.c.i
-
-.PHONY : src/simple_snake.i
-
-# target to preprocess a source file
-src/simple_snake.c.i:
-	$(MAKE) -f CMakeFiles/FoP_Project.dir/build.make CMakeFiles/FoP_Project.dir/src/simple_snake.c.i
-.PHONY : src/simple_snake.c.i
-
-src/simple_snake.s: src/simple_snake.c.s
-
-.PHONY : src/simple_snake.s
-
-# target to generate assembly for a file
-src/simple_snake.c.s:
-	$(MAKE) -f CMakeFiles/FoP_Project.dir/build.make CMakeFiles/FoP_Project.dir/src/simple_snake.c.s
-.PHONY : src/simple_snake.c.s
-
 src/view.o: src/view.c.o
 
 .PHONY : src/view.o
@@ -276,9 +249,6 @@ help:
 	@echo "... src/physics.o"
 	@echo "... src/physics.i"
 	@echo "... src/physics.s"
-	@echo "... src/simple_snake.o"
-	@echo "... src/simple_snake.i"
-	@echo "... src/simple_snake.s"
 	@echo "... src/view.o"
 	@echo "... src/view.i"
 	@echo "... src/view.s"

@@ -9,26 +9,19 @@
 #include "logic.h"
 #include "structs.h"
 
-//const int YES_SHOT = 1;
-//const int NO_SHOT = -1;
-//const int bullet_lifetime = 10000;
-
-//FPS = 30;
-//number_of_seconds = 30;
-const int Primary_Lifetime = 30 * 2;
+const int Primary_Lifetime = 30 * 3; // Product of FPS multiplying seconds of lifetime, respectively
 const double step = 4.0, bullet_speed = 6.0;
 const double pi = 3.14159265;
-const double rotation_rate = 4.0;
+const double rotation_rate = 3.0;
 void move_tank(char key, Tank * tank){
     switch (key) {
         case 'U':
             if (tank->angle == 270.0) //An exceptional case because of a bug in trigonometric calculations of SDL functions
                 tank->y -= step;
             else {
-                tank->x += step * cos((tank->angle) / 180.0*pi);
-                tank->y += step * sin((tank->angle) / 180.0*pi);
+                tank->x += (int) step * cos((tank->angle) / 180.0*pi);
+                tank->y += (int) step * sin((tank->angle) / 180.0*pi);
             }
-            //printf("\n cos: %f sin: %f\n", cos((tank->angle) * pi/180.0), sin((tank->angle) * pi/180.0) );
             break;
         case 'D':
             if (tank->angle == 90.0) //An exceptional case because of a bug in trigonometric calculations of SDL functions
@@ -36,10 +29,9 @@ void move_tank(char key, Tank * tank){
             else if (tank->angle == 180.0)
                 tank->x += step; //An exceptional case because of a bug in trigonometric calculations of SDL functions
             else {
-                tank->x -= step * cos((tank->angle) / 180.0*pi);
-                tank->y -= step * sin((tank->angle) / 180.0*pi);
+                tank->x -= (int) step * cos((tank->angle) / 180.0*pi);
+                tank->y -= (int) step * sin((tank->angle) / 180.0*pi);
             }
-            //printf("\n cos: %f sin: %f\n", cos((tank->angle) * pi/180.0), sin((tank->angle) * pi/180.0) );
     }
 }
 
@@ -59,8 +51,8 @@ void turn_tank(char key, Tank * tank){
 }
 
 void move_bullet(Bullet * bullet){
-    bullet->x += bullet_speed * cos((bullet->angle) * pi/180.0);
-    bullet->y += bullet_speed * sin((bullet->angle) * pi/180.0);
+    bullet->x += (int) bullet_speed * cos((bullet->angle) /180.0*pi);
+    bullet->y += (int) bullet_speed * sin((bullet->angle) /180.0*pi);
     bullet->lifetime -= 1;
 }
 
