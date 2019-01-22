@@ -8,6 +8,19 @@
 #include "view.h"
 #include "logic.h"
 
+//const int collision = 2, no_collision = 1;
+/*
+void assigning_const_variables (){
+    Primary_Bullets = 8;
+    proceed_to_game = 1;
+    collision = 2, no_collision = 1;
+    bullet_radius = 4;
+    Primary_Lifetime = 30 * 6;
+    EXIT = 2;
+    new_game_in_pause_menu = 3;
+}
+*/
+
 int correct_mod(int a, int b){
     if (a>=0)
         return a%b;
@@ -27,7 +40,6 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
     // There are some comments with "printf" components which were used to verify
     // if collision cases' codes work properly. These are remaining deliberately
     // because rewriting them for probable use in future consumes a lot of time.
-    const int collision = 2, no_collision = 1;
     const double threshold_distance = 2.0, threshold_angle = 75.0;
     const double pi = 3.14159265;
     double distance_tank_and_wall;
@@ -159,6 +171,24 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                     //printf("\n wall no. %d right and right up and right down hor wall \n", i);
                     return collision;
                 }
+            }
+        }
+    }
+    return no_collision;
+}
+
+int bullet_tank_collision(Bullet * bullet, Map * map){
+    double distance_bullet_tank;
+    //int current_time =SDL_GetTicks();
+    int duration_of_bullet_existence = 30 * 6 - bullet->lifetime; // Primary_Lifetime of bullets is 30 * 6.
+    if (duration_of_bullet_existence > 0) { // 4 is the minimum time required for bullet to exit from its shooter tank's territory.
+        for (int i = 0; i <= 1; i++) {
+            distance_bullet_tank = sqrt(pow(map->tanks[i].x - bullet->x, 2) + pow(map->tanks[i].y - bullet->y, 2));
+            if (distance_bullet_tank <= map->tanks[i].radius + bullet->radius) {
+                bullet->lifetime = -1;
+                map->tanks[abs(1 - i)].score++;
+                init_tanks(map);
+                return collision;
             }
         }
     }

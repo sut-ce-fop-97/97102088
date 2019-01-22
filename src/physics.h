@@ -4,7 +4,7 @@
 
 void move_tank(char key, Tank * tank);
 void turn_tank(char key, Tank * tank);
-void move_bullet(Bullet * bullet);
+void move_bullet(Bullet * bullet, Map * map);
 int fire(Tank * tank);
 
 #endif

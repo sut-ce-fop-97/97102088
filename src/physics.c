@@ -9,7 +9,9 @@
 #include "logic.h"
 #include "structs.h"
 
-const int Primary_Lifetime = 30 * 3; // Product of FPS multiplying seconds of lifetime, respectively
+//const int number_of_primary_bullets = 8;
+//const int Primary_Lifetime = 30 * 6; // Product of FPS multiplying seconds of lifetime, respectively
+//const int bullet_radius = 4;
 const double step = 4.0, bullet_speed = 6.0;
 const double pi = 3.14159265;
 const double rotation_rate = 3.0;
@@ -50,7 +52,7 @@ void turn_tank(char key, Tank * tank){
     }
 }
 
-void move_bullet(Bullet * bullet){
+void move_bullet(Bullet * bullet, Map * map){
     bullet->x += (int) bullet_speed * cos((bullet->angle) /180.0*pi);
     bullet->y += (int) bullet_speed * sin((bullet->angle) /180.0*pi);
     bullet->lifetime -= 1;
@@ -58,10 +60,11 @@ void move_bullet(Bullet * bullet){
 
 int fire(Tank * tank) {
     if (tank->remaining_bullets > 0) {
-        tank->bullets [5 - tank->remaining_bullets].lifetime = Primary_Lifetime;
-        tank->bullets [5 - tank->remaining_bullets].x = tank->x;
-        tank->bullets [5 - tank->remaining_bullets].y = tank->y;
-        tank->bullets [5 - tank->remaining_bullets].angle = tank->angle;
+        tank->bullets [Primary_Bullets - tank->remaining_bullets].lifetime = Primary_Lifetime;
+        tank->bullets [Primary_Bullets - tank->remaining_bullets].x = tank->x + (bullet_radius + tank->radius + 1) * cos((tank->angle) / 180.0*pi);
+        tank->bullets [Primary_Bullets - tank->remaining_bullets].y = tank->y + (bullet_radius + tank->radius + 1) * sin((tank->angle) / 180.0*pi);
+        tank->bullets [Primary_Bullets - tank->remaining_bullets].angle = tank->angle;
+        tank->bullets [Primary_Bullets - tank->remaining_bullets].radius = bullet_radius;
         tank->remaining_bullets -= 1;
         return 1;
     }
