@@ -21,8 +21,14 @@ void assigning_const_variables (){
 }
 */
 
+int correct_int_casting(double a){
+    if (a >= 0.0 || (int)a == a)
+        return (int)a;
+    return (int)a - 1;
+}
+
 int correct_mod(int a, int b){
-    if (a>=0)
+    if (a >= 0)
         return a%b;
     a *= -1;
     return b-(a%b);
@@ -34,7 +40,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
     if (direction == 'B'){
         if (copied_tank_angle >= 180.0 && copied_tank_angle <360.0)
             copied_tank_angle -= 180.0;
-        else if (copied_tank_angle >= 0.0 && copied_tank_angle < 180.0)
+        else // if (copied_tank_angle >= 0.0 && copied_tank_angle < 180.0)
             copied_tank_angle += 180.0;
     }
     // There are some comments with "printf" components which were used to verify
@@ -43,7 +49,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
     const double threshold_distance = 2.0, threshold_angle = 75.0;
     const double pi = 3.14159265;
     double distance_tank_and_wall;
-    double distance_tank_and_edge_of_wall[4];//0: Up 1: Down 2: Left 3: Right
+    double distance_tank_and_edge_of_wall[4];// 0: Up 1: Down 2: Left 3: Right
     double angle_tank_and_edge_of_wall;
     for (int i=0; i < map->number_of_walls; i++){
         //the case of vertical wall
@@ -70,7 +76,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                     }
                 }
             }
-            //upper edge case
+            //up edge case
             else if ( distance_tank_and_edge_of_wall[0] <= tank->radius + threshold_distance){
                 if (tank->x == map->walls[i].x1)
                     angle_tank_and_edge_of_wall = 90.0;
@@ -93,7 +99,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                     }
                 }
             }
-            //lower edge case
+            //down edge case
             else if ( distance_tank_and_edge_of_wall[1] <= tank->radius + threshold_distance){
                 if (tank->x == map->walls[i].x1)
                     angle_tank_and_edge_of_wall = 90.0;
@@ -177,17 +183,100 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
     return no_collision;
 }
 
+void bullet_wall_collision(Bullet * bullet, Map * map){
+    int i;
+    const double threshold_distance = bullet->radius, threshold_angle = 75.0;
+    const double pi = 3.14159265;
+    double distance_bullet_and_wall;
+    double distance_bullet_and_edge_of_wall[4];// 0: Up 1: Down 2: Left 3: Right
+    //double angle_tank_and_edge_of_wall;
+
+    for (i = 0; i < map->number_of_walls; i++){
+        if (i == bullet->previous_collided_wall_index)
+            continue;
+        // the case of vertical wall
+        if (map->walls[i].x1 == map->walls[i].x2) {
+            distance_bullet_and_edge_of_wall[0] = sqrt( pow(bullet->x - map->walls[i].x1, 2) + pow(bullet->y - map->walls[i].y1, 2));
+            distance_bullet_and_edge_of_wall[1] = sqrt( pow(bullet->x - map->walls[i].x1, 2) + pow(bullet->y - map->walls[i].y2, 2));
+            // tape case
+            if (bullet->y <= map->walls[i].y2 && bullet->y >= map->walls[i].y1) {
+                distance_bullet_and_wall = abs(map->walls[i].x1 - bullet->x);
+                if (distance_bullet_and_wall <= threshold_distance) {
+                    if (bullet->angle <= 180.0 && bullet->angle >= 0.0) {
+                        bullet->angle = 180.0 - bullet->angle;
+                        bullet->previous_collided_wall_index = i;
+                        return;
+                    } else {
+                        bullet->angle = 540.0 - bullet->angle;
+                        bullet->previous_collided_wall_index = i;
+                        return;
+                    }
+                }
+            }
+            // up edge case
+            else if (distance_bullet_and_edge_of_wall[0] <= threshold_distance){
+                if (bullet->angle == 180.0)
+                    bullet->angle = 0;
+                else if (bullet->angle < 180.0)
+                    bullet->angle += 180.0;
+                bullet->previous_collided_wall_index = i;
+                return;
+            }
+            // down edge case
+            else if (distance_bullet_and_edge_of_wall[1] <= threshold_distance){
+                if (bullet->angle == 0.0)
+                    bullet->angle = 180.0;
+                else if (bullet->angle >= 180.0)
+                    bullet->angle -= 180.0;
+                bullet->previous_collided_wall_index = i;
+                return;
+            }
+        }
+        // the case of horizontal wall
+        else if (map->walls[i].y1 == map->walls[i].y2) {
+            distance_bullet_and_edge_of_wall[2] = sqrt( pow(bullet->x - map->walls[i].x1, 2) + pow(bullet->y - map->walls[i].y1, 2));
+            distance_bullet_and_edge_of_wall[3] = sqrt( pow(bullet->x - map->walls[i].x2, 2) + pow(bullet->y - map->walls[i].y1, 2));
+            // tape case
+            if (bullet->x <= map->walls[i].x2 && bullet->x >= map->walls[i].x1) {
+                distance_bullet_and_wall = abs(map->walls[i].y1 - bullet->y);
+                if (distance_bullet_and_wall <= threshold_distance) {
+                    bullet->angle = 360.0 - bullet->angle;
+                    bullet->previous_collided_wall_index = i;
+                    return;
+                }
+            }
+            // left edge case
+            else if (distance_bullet_and_edge_of_wall[2] <= threshold_distance){
+                if (bullet->angle <= 90.0)
+                    bullet->angle += 180.0;
+                else if (bullet->angle >= 270.0)
+                    bullet->angle -= 180.0;
+                bullet->previous_collided_wall_index = i;
+                return;
+            }
+            // right edge case
+            else if (distance_bullet_and_edge_of_wall[3] <= threshold_distance){
+                if (bullet->angle < 180.0 && bullet->angle >= 90.0)
+                    bullet->angle += 180.0;
+                else if (bullet->angle <= 270.0 && bullet->angle >= 180.0)
+                    bullet->angle -= 180.0;
+                bullet->previous_collided_wall_index = i;
+                return;
+            }
+        }
+    }
+}
+
 int bullet_tank_collision(Bullet * bullet, Map * map){
     double distance_bullet_tank;
-    //int current_time =SDL_GetTicks();
-    int duration_of_bullet_existence = 30 * 6 - bullet->lifetime; // Primary_Lifetime of bullets is 30 * 6.
-    if (duration_of_bullet_existence > 0) { // 4 is the minimum time required for bullet to exit from its shooter tank's territory.
+    int duration_of_bullet_existence = Bullet_Primary_Lifetime - bullet->lifetime;
+    if (duration_of_bullet_existence > 0) {
         for (int i = 0; i <= 1; i++) {
             distance_bullet_tank = sqrt(pow(map->tanks[i].x - bullet->x, 2) + pow(map->tanks[i].y - bullet->y, 2));
             if (distance_bullet_tank <= map->tanks[i].radius + bullet->radius) {
                 bullet->lifetime = -1;
-                map->tanks[abs(1 - i)].score++;
-                init_tanks(map);
+                map->tanks[1 - i].score++;
+                locate_tanks(map);
                 return collision;
             }
         }

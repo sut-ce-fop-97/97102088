@@ -9,61 +9,43 @@
 #include "logic.h"
 #include "structs.h"
 
-// Collision code is 2.
-//const int no_of_primary_bullets = 8;
-//const int EXIT = 2;
-//const int new_game_in_pause_menu = 3;
-
 void init_tanks(Map * map){
-    int tanks_starting_positions[4][2]
-    ={30, 30, map->width - 30, 30, 30, map->height - 30, map->width - 30, map->height - 30};
-    int tanks_rand[2];
-    double decimal_rand;
-
     /*
     do {
         tank->x = correct_mod(rand(), map_width);
         tank->y = correct_mod(rand(), map_height);
     } while (movement_collides_walls(tank, map, 'F') != no_collision);
     */
-
-    // Different part of initializing two tanks
-    map->tanks[0].tank_index = 0;
-    map->tanks[1].tank_index = 1;
-
-    tanks_rand[0] = correct_mod(rand(), 4);
-    do{
-        tanks_rand[1] = correct_mod(rand(), 4);
-    } while(tanks_rand[0] == tanks_rand[1]);
-    for (int i=0; i<=1; i++){
-        map->tanks[i].x = tanks_starting_positions[tanks_rand[i]][0];
-        map->tanks[i].y = tanks_starting_positions[tanks_rand[i]][1];
-    }
-
-    /*
-    map->tanks[0].x = 30;
-    map->tanks[0].y = 30;
-    map->tanks[1].x = 30;
-    map->tanks[1].y = map->height - 30;
-    */
-
-    // Mutual part of initializing two tanks
+    locate_tanks(map);
     for (int i=0; i<=1; i++) {
-        decimal_rand = correct_mod(rand(), (int) pow(10, 6)) * pow(10, -6);
-        map->tanks[i].angle = correct_mod(rand(), 360) + decimal_rand;
-        map->tanks[i].radius = 18;
-        map->tanks[i].thickness = 40.0;
-        map->tanks[i].bullets = malloc(sizeof(Bullet) * Primary_Bullets);
+        map->tanks[i].score = 0;
         map->tanks[i].remaining_bullets = Primary_Bullets;
-        //map->tanks[i].score = 0;
+        map->tanks[i].index = i;
+        map->tanks[i].radius = 18.0;
+        map->tanks[i].thickness = 40.0;
+        map->tanks[i].mine_index = -1;
+        map->tanks[i].bullets = malloc(sizeof(Bullet) * Primary_Bullets);
         for (int j = 0; j < Primary_Bullets; j++)
             map->tanks[i].bullets[j].lifetime = -1;
     }
 }
 
+void init_mine(int mine_index, Map * map){
+    map->mines[mine_index].index = mine_index;
+    map->mines[mine_index].x = correct_mod(rand(), map->width - 2 * (int)map->mines[mine_index].radius) + (int)map->mines[mine_index].radius;
+    map->mines[mine_index].y = correct_mod(rand(), map->height - 2 * (int)map->mines[mine_index].radius) + (int)map->mines[mine_index].radius;
+    map->mines[mine_index].radius = mine_radius;
+    map->mines[mine_index].interval_between_appear_and_pick = 0;
+    map->mines[mine_index].countdown_before_next_mine = time_between_consecutive_mines;
+    map->mines[mine_index].picker_tank = -1;
+    map->mines[mine_index].is_planted = 0;
+    map->mines[mine_index].lifetime_after_plant = -1;
+    map->mines[mine_index].explosion_countdown = inactive_mine;
+}
+
 void draw_tank(SDL_Renderer * renderer ,Tank * tank){
     int Circle_r, Circle_g, Circle_b, Pie_r, Pie_g, Pie_b;
-    if (tank->tank_index == 0){
+    if (tank->index == 0){
         Circle_r = 255; Circle_g = 0; Circle_b = 0;
         Pie_r = 0; Pie_g = 255; Pie_b = 0;
     }
@@ -77,14 +59,40 @@ void draw_tank(SDL_Renderer * renderer ,Tank * tank){
 
 void draw_bullet(SDL_Renderer * renderer, Bullet * bullet, Map * map){
     filledCircleRGBA(renderer, bullet->x, bullet->y, bullet->radius, 0, 0, 0, 255);
-    if (bullet_tank_collision(bullet, map) != 2)
-        move_bullet(bullet, map);
+    move_bullet(bullet, map);
 }
 
 void draw_walls(SDL_Renderer * renderer, Wall * walls, int number_of_walls){
     for (int i=0; i<number_of_walls; i++)
         boxRGBA(renderer, walls[i].x1, walls[i].y1,
                 walls[i].x2, walls[i].y2, 0, 0, 0, 255);
+}
+
+void draw_mine(SDL_Renderer * renderer, Mine * mine, Map * map){
+    explode_mine(mine, map);
+    if (mine->explosion_countdown >= 0){
+        char buffer[20];
+        sprintf(buffer, "%d", mine->explosion_countdown);
+        stringRGBA(renderer, 30, 30, buffer, 0,0,0,255);
+        filledCircleRGBA(renderer, mine->x, mine->y, mine->radius, 255, 165, 0, 255);
+        mine->explosion_countdown --;
+        //if (mine->explosion_countdown == -1)
+        //    mine->explosion_countdown = expired_mine;
+    }
+    else if (mine->interval_between_appear_and_pick > 0 && mine->picker_tank == -1) {
+        filledCircleRGBA(renderer, mine->x, mine->y, mine->radius, 255, 255, 0, 255);
+        stringRGBA(renderer, mine->x, mine->y, "M", 0, 0, 0, 255);
+        mine->interval_between_appear_and_pick --;
+        if (mine->interval_between_appear_and_pick == 0)
+            mine->countdown_before_next_mine = time_between_consecutive_mines;
+    }
+    else if (mine->picker_tank == -1) {
+        mine->countdown_before_next_mine --;
+        if (mine->countdown_before_next_mine == 0) {
+            mine->interval_between_appear_and_pick = time_between_appear_and_pick;
+            locate_mine(mine, map);
+        }
+    }
 }
 
 void init_window(SDL_Renderer * renderer){
@@ -139,7 +147,7 @@ int menu(SDL_Window * window, SDL_Renderer * renderer, char call_from, Map * map
                         break;
                     case SDLK_g:
                         if (call_from == 'm')
-                            return proceed_to_game;
+                            return new_game_in_start_menu;
                         else if (call_from == 'h')
                             return new_game_in_pause_menu;
                     //case SDLK_l:
@@ -156,7 +164,7 @@ int game_over(SDL_Renderer * renderer, Map * map, int beginning_of_time){
     int final_screen_width = map->width / 3, final_screen_height = map->height * 4 / 10;
     int final_screen_x = map->width / 2 - final_screen_width / 2, final_screen_y = map->height / 2 - final_screen_height / 2;
     int current_time = SDL_GetTicks();
-    char banner_buffer[20];
+    char banner_buffer[30];
     SDL_Event event;
 
     while (1){
@@ -186,7 +194,7 @@ int game_over(SDL_Renderer * renderer, Map * map, int beginning_of_time){
     }
 }
 
-int handle_events(SDL_Window * window, SDL_Renderer * renderer, Map * map, int arrow_keys[][4]){
+int handle_events(SDL_Window * window, SDL_Renderer * renderer, Map * map, int arrow_keys[2][4]){
     // 'F':forward 'B':backward
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
@@ -252,12 +260,18 @@ int handle_events(SDL_Window * window, SDL_Renderer * renderer, Map * map, int a
                 case SDLK_d:
                     arrow_keys[1][3] = 0;
                     break;
-                // Keys of firing bullets
+                // Keys of firing bullets or planting mines
                 case SDLK_SLASH:
-                    fire(&map->tanks[0]);
+                    if (map->tanks[0].mine_index == -1)
+                        fire(&map->tanks[0]);
+                    else
+                        plant_mine(&map->tanks[0], map);
                     break;
                 case SDLK_e:
-                    fire(&map->tanks[1]);
+                    if (map->tanks[1].mine_index == -1)
+                        fire(&map->tanks[1]);
+                    else
+                        plant_mine(&map->tanks[1], map);
             }
         }
     }

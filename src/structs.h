@@ -9,20 +9,31 @@ typedef struct {
     int x, y;
     double angle, radius;
     int lifetime;
+    int previous_collided_wall_index;
 } Bullet;
 
 typedef struct {
-    int x, y, radius;
-    int tank_index;
-    double angle, thickness;
+    int x, y;
+    int index;
+    double angle, thickness, radius;
     Bullet * bullets;
     int remaining_bullets;
     int score;
+    int mine_index;
 } Tank;
 
 typedef struct {
+    int x, y;
+    double radius;
+    int interval_between_appear_and_pick, countdown_before_next_mine, lifetime_after_plant;
+    int picker_tank, is_planted, explosion_countdown;
+    // The value of -1 for explosion_countdown means inactivated mine and -2 means expired mine
+    int index;
+} Mine;
+typedef struct {
     Tank * tanks;
     Wall * walls;
+    Mine * mines;
     int number_of_walls;
     int width;
     int height;

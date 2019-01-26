@@ -13,16 +13,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1fbce3c9-63a9-4726-8710-f7699ca66855" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/logic.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/main.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/physics.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/logic.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/logic.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/physics.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/physics.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/FoP_Project.dir/src/view.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/FoP_Project.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/FoP_Project.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/FoP_Project.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/FoP_Project.exe.stackdump" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/FoP_Project.exe.stackdump" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/FoP_Project.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/FoP_Project.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/libFoP_Project.dll.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/libFoP_Project.dll.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic.h" afterDir="false" />
@@ -42,14 +37,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.541432">
+    <splitter split-orientation="horizontal" split-proportion="0.53839934">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/physics.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret lean-forward="true" />
+                <state relative-caret-position="255">
+                  <caret line="118" column="49" selection-start-line="118" selection-start-column="49" selection-end-line="118" selection-end-column="49" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -60,8 +55,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/physics.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+                <state relative-caret-position="187">
+                  <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -69,8 +64,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/logic.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="38">
-                  <caret line="180" column="17" selection-start-line="180" selection-start-column="17" selection-end-line="180" selection-end-column="17" />
+                <state relative-caret-position="131">
+                  <caret line="46" column="65" selection-start-line="46" selection-start-column="65" selection-end-line="46" selection-end-column="65" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -81,8 +76,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/logic.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
-                  <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+                <state>
+                  <caret lean-forward="true" />
                 </state>
               </provider>
             </entry>
@@ -90,17 +85,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/structs.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="205">
-                  <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+                <state relative-caret-position="154">
+                  <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/view.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="181" column="12" lean-forward="true" selection-start-line="181" selection-start-column="12" selection-end-line="181" selection-end-column="12" />
+                <state relative-caret-position="131">
+                  <caret line="11" column="14" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="14" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -109,19 +104,10 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.919/simple_snake.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="212">
-                  <caret line="80" column="18" lean-forward="true" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/view.h">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
+                <state relative-caret-position="187">
+                  <caret line="11" column="61" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
                 </state>
               </provider>
             </entry>
@@ -133,8 +119,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="137" column="8" lean-forward="true" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
+                <state relative-caret-position="85">
+                  <caret line="72" column="26" lean-forward="true" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -150,8 +136,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/3rd_map.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+                <state relative-caret-position="323">
+                  <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -162,68 +148,68 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>draw</find>
-      <find>move</find>
-      <find>tank-&gt;</find>
-      <find>init</find>
-      <find>move_</find>
-      <find>//</find>
-      <find>no_collision = 1;</find>
-      <find>bullet_radius</find>
-      <find>tank-&gt;radiu</find>
-      <find>Primary_Bullets</find>
-      <find>tanks</find>
-      <find>collis</find>
+      <find>draw_tank</find>
+      <find>expl</find>
+      <find>draw_b</find>
+      <find>renderer</find>
+      <find>is_planted</find>
+      <find>j</find>
+      <find>init_m</find>
+      <find>arrow_ke</find>
       <find>procee</find>
-      <find>proceed</find>
-      <find>no_of_primary_bullets</find>
-      <find>number_of_primary_bullets</find>
-      <find>primar</find>
-      <find>extern</find>
-      <find>int</find>
-      <find>2</find>
-      <find>2</find>
-      <find>3</find>
-      <find>3</find>
-      <find>EXIT</find>
-      <find>prima</find>
-      <find>horizontal_margin</find>
-      <find>window</find>
-      <find>no_</find>
-      <find>winn</find>
-      <find>brea</find>
+      <find>distance_tank_mine</find>
+      <find>init_mi</find>
+      <find>distance_</find>
+      <find>draw_mi</find>
+      <find>explosion_countdown</find>
+      <find>= -1</find>
+      <find>= -1</find>
+      <find>inactive</find>
+      <find>init_min</find>
+      <find>move</find>
+      <find>map-&gt;mines[i].</find>
+      <find>explo</find>
+      <find>pick_mine</find>
+      <find>interval</find>
+      <find>handle</find>
+      <find>plant</find>
+      <find>draw_m</find>
+      <find>lifetime_after_plant</find>
+      <find>pick</find>
+      <find>init_tanks</find>
+      <find>init_tank</find>
     </findStrings>
     <replaceStrings>
-      <replace>angle_tank_and_edge_of_wall</replace>
-      <replace>/2.0</replace>
-      <replace>3.0</replace>
-      <replace>2.0</replace>
-      <replace>sin</replace>
-      <replace>cos</replace>
-      <replace>180.0</replace>
-      <replace>threshold_angle</replace>
-      <replace>else</replace>
-      <replace>&lt; 0.0</replace>
-      <replace>copied_tank_angle</replace>
-      <replace>prin</replace>
-      <replace>//printf</replace>
-      <replace>angle tank and wall</replace>
-      <replace>p</replace>
-      <replace>//prin</replace>
-      <replace>arrow_keys</replace>
-      <replace>map_1-&gt;tanks</replace>
-      <replace>load</replace>
-      <replace>quit</replace>
-      <replace>200, 0, 0</replace>
-      <replace>150</replace>
       <replace>proceed_to_game</replace>
       <replace>5</replace>
       <replace>map-&gt;tanks</replace>
       <replace>no_of_primary_bullets</replace>
       <replace>Exit</replace>
-      <replace>Primary_Bullets</replace>
       <replace>tanks[i].</replace>
+      <replace>//pri</replace>
+      <replace>p</replace>
       <replace>horizontal_margin_for_text</replace>
+      <replace>Primary_Bullets</replace>
+      <replace>return</replace>
+      <replace>return 12</replace>
+      <replace>bullet-&gt;raius</replace>
+      <replace>up</replace>
+      <replace>correct_int_casting()</replace>
+      <replace>+ 2</replace>
+      <replace>down</replace>
+      <replace>//bullet-&gt;pr</replace>
+      <replace>tank_speed</replace>
+      <replace>threshold_distance</replace>
+      <replace>map-&gt;mine</replace>
+      <replace>map-&gt;mines[mine_index]</replace>
+      <replace>map-&gt;mines[mine_index].</replace>
+      <replace>mine</replace>
+      <replace>Bullet_Primary_Lifetime</replace>
+      <replace>no_of_allowed_mines</replace>
+      <replace>i</replace>
+      <replace>distance_tank_and_mine</replace>
+      <replace>[1]</replace>
+      <replace>mine-&gt;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -237,21 +223,21 @@
         <option value="$PROJECT_DIR$/src/1st_map.txt" />
         <option value="$PROJECT_DIR$/src/3rd_map.txt" />
         <option value="$PROJECT_DIR$/src/simple_snake.c" />
-        <option value="$PROJECT_DIR$/src/structs.h" />
         <option value="$PROJECT_DIR$/src/main.h" />
-        <option value="$PROJECT_DIR$/src/physics.h" />
-        <option value="$PROJECT_DIR$/src/physics.c" />
-        <option value="$PROJECT_DIR$/src/logic.c" />
         <option value="$PROJECT_DIR$/src/view.h" />
+        <option value="$PROJECT_DIR$/src/structs.h" />
         <option value="$PROJECT_DIR$/src/logic.h" />
-        <option value="$PROJECT_DIR$/src/view.c" />
+        <option value="$PROJECT_DIR$/src/physics.h" />
         <option value="$PROJECT_DIR$/src/main.c" />
+        <option value="$PROJECT_DIR$/src/view.c" />
+        <option value="$PROJECT_DIR$/src/logic.c" />
+        <option value="$PROJECT_DIR$/src/physics.c" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-4" />
-    <option name="y" value="96" />
+    <option name="x" value="-5" />
+    <option name="y" value="95" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
   </component>
@@ -338,12 +324,14 @@
       <workItem from="1546076134094" duration="36959000" />
       <workItem from="1546444110812" duration="786000" />
       <workItem from="1547995318742" duration="8034000" />
-      <workItem from="1548013673940" duration="41176000" />
+      <workItem from="1548013673940" duration="54718000" />
+      <workItem from="1548243965930" duration="28134000" />
+      <workItem from="1548340159368" duration="16658000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="219096000" />
+    <option name="totallyTimeSpent" value="277430000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -356,14 +344,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16577181" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16979866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -414,17 +401,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/simple_snake.c" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.631/simple_snake.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="83" column="8" selection-start-line="79" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.631/simple_snake.c" />
     <entry file="file://$PROJECT_DIR$/../simple_snake.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1411">
           <caret line="83" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main1.h" />
+    <entry file="file://$PROJECT_DIR$/src/main1.cpp" />
+    <entry file="file://$PROJECT_DIR$/src/main.h" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.563/simple_snake.c" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.015/simple_snake.c" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.919/simple_snake.c" />
+    <entry file="file://$PROJECT_DIR$/src/view.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="61" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -433,97 +427,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/3rd_map.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        <state relative-caret-position="323">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main1.h">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.445/simple_snake.c">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main1.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.h">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.010/simple_snake.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.563/simple_snake.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="61" column="4" lean-forward="true" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+        <state relative-caret-position="289">
+          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/physics.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/physics.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/logic.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="180" column="17" selection-start-line="180" selection-start-column="17" selection-end-line="180" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.015/simple_snake.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.919/simple_snake.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="80" column="18" lean-forward="true" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
+        <state relative-caret-position="187">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/structs.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        <state relative-caret-position="154">
+          <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/logic.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/logic.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="46" column="65" selection-start-line="46" selection-start-column="65" selection-end-line="46" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="181" column="12" lean-forward="true" selection-start-line="181" selection-start-column="12" selection-end-line="181" selection-end-column="12" />
+        <state relative-caret-position="131">
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="14" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -532,8 +485,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="137" column="8" lean-forward="true" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
+        <state relative-caret-position="85">
+          <caret line="72" column="26" lean-forward="true" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/physics.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="118" column="49" selection-start-line="118" selection-start-column="49" selection-end-line="118" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
