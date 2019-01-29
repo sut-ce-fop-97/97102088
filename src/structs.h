@@ -27,9 +27,9 @@ typedef struct {
     double radius;
     int interval_between_appear_and_pick, countdown_before_next_mine, lifetime_after_plant;
     int picker_tank, is_planted, explosion_countdown;
-    // The value of -1 for explosion_countdown means inactivated mine and -2 means expired mine
     int index;
 } Mine;
+
 typedef struct {
     Tank * tanks;
     Wall * walls;
@@ -37,6 +37,7 @@ typedef struct {
     int number_of_walls;
     int width;
     int height;
+    int index_of_last_assigned_mine;
 } Map;
 
 typedef struct {

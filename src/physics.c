@@ -43,8 +43,8 @@ void move_tank(char key, Tank * tank, Map * map){
         case 'D':
             if (tank->angle == 90.0) //An exceptional case because of a bug in trigonometric calculations of SDL functions
                 tank->y -= correct_int_casting(tank_speed);
-            else if (tank->angle == 180.0)
-                tank->x += correct_int_casting(tank_speed); //An exceptional case because of a bug in trigonometric calculations of SDL functions
+            else if (tank->angle == 180.0) //An exceptional case because of a bug in trigonometric calculations of SDL functions
+                tank->x += correct_int_casting(tank_speed);
             else {
                 tank->x -= correct_int_casting(tank_speed * cos((tank->angle) / 180.0*pi));
                 tank->y -= correct_int_casting(tank_speed * sin((tank->angle) / 180.0*pi));
@@ -71,7 +71,12 @@ void move_bullet(Bullet * bullet, Map * map){
         bullet_wall_collision(bullet, map);
         bullet->x += correct_int_casting(bullet_speed * cos((bullet->angle) / 180.0 * pi));
         bullet->y += correct_int_casting(bullet_speed * sin((bullet->angle) / 180.0 * pi));
-        bullet->lifetime--;
+        // Next two lines are necessary for proper movement in angles that are so close to the horizontal or vertical angle.
+        if (bullet_speed * cos((bullet->angle) / 180.0 * pi) < 1.0 && bullet_speed * cos((bullet->angle) / 180.0 * pi) > 0.0)
+            bullet->x += 1;
+        if (bullet_speed * sin((bullet->angle) / 180.0 * pi) < 1.0 && bullet_speed * sin((bullet->angle) / 180.0 * pi) > 0.0)
+            bullet->y += 1;
+        bullet->lifetime --;
     }
 }
 
@@ -89,9 +94,9 @@ void pick_mine(Tank * tank, Map * map){
             if (map->mines[i].interval_between_appear_and_pick > 0 && distance_tank_and_mine <= map->mines[i].radius + tank->radius) {
                 map->mines[i].picker_tank = tank->index;
                 tank->mine_index = i;
-                index_of_last_assigned_mine++;
-                if (index_of_last_assigned_mine < no_of_allowed_mines)
-                    init_mine(index_of_last_assigned_mine, map);
+                map->index_of_last_assigned_mine ++;
+                if (map->index_of_last_assigned_mine < no_of_allowed_mines)
+                    make_mine(map);
             }
         }
     }
@@ -112,7 +117,7 @@ void explode_mine(Mine * mine, Map *map){
         distance_tank_and_mine = sqrt( pow(map->tanks[1 - mine->picker_tank].x - mine->x, 2) + pow(map->tanks[1 - mine->picker_tank].y - mine->y, 2) );
         threshold_distance = mine->radius + map->tanks[1 - mine->picker_tank].radius + 2.0;
         if (distance_tank_and_mine <= threshold_distance) {
-            if (mine->is_planted == 1 && mine->lifetime_after_plant > 0 && mine->explosion_countdown == inactive_mine)
+            if (mine->is_planted == 1 && mine->lifetime_after_plant > 0 && mine->explosion_countdown == not_activated_mine_yet)
                 mine->explosion_countdown = explosion_delay;
             else if (mine->explosion_countdown == 0) {
                 map->tanks[mine->picker_tank].score ++;
@@ -121,7 +126,6 @@ void explode_mine(Mine * mine, Map *map){
         }
     }
 }
-
 
 int fire(Tank * tank) {
     if (tank->remaining_bullets > 0) {

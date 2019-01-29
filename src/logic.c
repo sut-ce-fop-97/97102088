@@ -8,23 +8,10 @@
 #include "view.h"
 #include "logic.h"
 
-//const int collision = 2, no_collision = 1;
-/*
-void assigning_const_variables (){
-    Primary_Bullets = 8;
-    proceed_to_game = 1;
-    collision = 2, no_collision = 1;
-    bullet_radius = 4;
-    Primary_Lifetime = 30 * 6;
-    EXIT = 2;
-    new_game_in_pause_menu = 3;
-}
-*/
-
-int correct_int_casting(double a){
-    if (a >= 0.0 || (int)a == a)
-        return (int)a;
-    return (int)a - 1;
+int correct_int_casting(double inp){
+    if (inp >= 0.0 || (int)inp == inp)
+        return (int)inp;
+    return (int)inp - 1;
 }
 
 int correct_mod(int a, int b){
@@ -59,18 +46,18 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
             //tape case
             if (tank->y <= map->walls[i].y2 && tank->y >= map->walls[i].y1){
                 distance_tank_and_wall = abs(map->walls[i].x1 - tank->x);
-                //printf("\n wall no. %d distance from wall: %f\n", i, distance_tank_and_wall);
+                printf("\n wall no. %d distance from wall: %f\n", i, distance_tank_and_wall);
                 if (distance_tank_and_wall <= tank->radius + threshold_distance) {
                     if (tank->x < map->walls[i].x1){
                         if ( (copied_tank_angle < 360.0 && copied_tank_angle > 270.0) ||
                         (copied_tank_angle < 90.0 && copied_tank_angle >= 0.0)) {
-                            //printf("\n wall no. %d tape ver wall \n", i);
+                            printf("\n wall no. %d tape ver wall \n", i);
                             return collision;
                         }
                     }
                     else {
                         if (copied_tank_angle < 270.0 && copied_tank_angle > 90.0) {
-                            //printf("\n wall no. %d up and up left ver wall \n", i);
+                            printf("\n wall no. %d up and up left ver wall \n", i);
                             return collision;
                         }
                     }
@@ -86,7 +73,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                 if (angle_tank_and_edge_of_wall < 0.0) {
                     angle_tank_and_edge_of_wall += 180.0;
                     if (copied_tank_angle < angle_tank_and_edge_of_wall + threshold_angle && copied_tank_angle > angle_tank_and_edge_of_wall - threshold_angle) {
-                        //printf("\n wall no. %d up right ver wall \n", i);
+                        printf("\n wall no. %d up right ver wall \n", i);
                         return collision;
                     }
                 }
@@ -94,7 +81,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                 else {
                     if ( (copied_tank_angle < 360.0 && copied_tank_angle > 360.0 + angle_tank_and_edge_of_wall - threshold_angle)
                     || (copied_tank_angle < angle_tank_and_edge_of_wall + threshold_angle && copied_tank_angle > 90.0 - threshold_angle) ) {
-                        //printf("\n wall no. %d up and up left ver wall \n", i);
+                        printf("\n wall no. %d up and up left ver wall \n", i);
                         return collision;
                     }
                 }
@@ -110,7 +97,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                     angle_tank_and_edge_of_wall += 360.0;
                     if ( (copied_tank_angle < 360.0 && copied_tank_angle > angle_tank_and_edge_of_wall - threshold_angle)
                     || (copied_tank_angle >=0 && copied_tank_angle < angle_tank_and_edge_of_wall + threshold_angle - 360.0) ) {
-                        //printf("\n wall no. %d down left ver wall angle: %f \n", i, angle_tank_and_edge_of_wall);
+                        printf("\n wall no. %d down left ver wall angle: %f \n", i, angle_tank_and_edge_of_wall);
                         return collision;
                     }
                 }
@@ -118,7 +105,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                 else {
                     angle_tank_and_edge_of_wall += 180.0;
                     if ( copied_tank_angle < angle_tank_and_edge_of_wall + threshold_angle && copied_tank_angle > angle_tank_and_edge_of_wall - threshold_angle) {
-                        //printf("\n wall no. %d down and down right ver wall \n", i);
+                        printf("\n wall no. %d down and down right ver wall \n", i);
                         return collision;
                     }
                 }
@@ -135,13 +122,13 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                 if (distance_tank_and_wall <= tank->radius + threshold_distance) {
                     if (tank->y < map->walls[i].y1){
                         if (copied_tank_angle < 180.0 && copied_tank_angle > 0.0) {
-                            //printf("\n wall no. %d tape hor wall \n", i);
+                            printf("\n wall no. %d tape hor wall \n", i);
                             return collision;
                         }
                     }
                     else {
                         if (copied_tank_angle < 360.0 && copied_tank_angle > 180.0) {
-                            //printf("\n wall no. %d tape hor wall \n", i);
+                            printf("\n wall no. %d tape hor wall \n", i);
                             return collision;
                         }
                     }
@@ -155,7 +142,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                     angle_tank_and_edge_of_wall += 360.0;
                     if ( (copied_tank_angle < 360.0 && copied_tank_angle > angle_tank_and_edge_of_wall - threshold_angle)
                     || (copied_tank_angle < angle_tank_and_edge_of_wall + threshold_angle - 360.0 && copied_tank_angle >= 0.0) ) {
-                        //printf("\n wall no. %d left down hor wall \n", i);
+                        printf("\n wall no. %d left down hor wall \n", i);
                         return collision;
                     }
                 }
@@ -163,7 +150,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                 else {
                     if ( (copied_tank_angle < angle_tank_and_edge_of_wall + threshold_angle && copied_tank_angle >= 0.0)
                          || (copied_tank_angle < 360.0 && copied_tank_angle > 360.0 + angle_tank_and_edge_of_wall - threshold_angle) ) {
-                        //printf("\n wall no. %d left up and left hor wall \n", i);
+                        printf("\n wall no. %d left up and left hor wall \n", i);
                         return collision;
                     }
                 }
@@ -174,7 +161,7 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
                 //right_up and right_down and right
                 angle_tank_and_edge_of_wall += 180.0;
                 if (copied_tank_angle < angle_tank_and_edge_of_wall + threshold_angle && copied_tank_angle > angle_tank_and_edge_of_wall - threshold_angle) {
-                    //printf("\n wall no. %d right and right up and right down hor wall \n", i);
+                    printf("\n wall no. %d right and right up and right down hor wall \n", i);
                     return collision;
                 }
             }
@@ -185,11 +172,9 @@ int movement_collides_walls(Tank * tank, Map * map, char direction){
 
 void bullet_wall_collision(Bullet * bullet, Map * map){
     int i;
-    const double threshold_distance = bullet->radius, threshold_angle = 75.0;
-    const double pi = 3.14159265;
+    const double threshold_distance = bullet->radius;
     double distance_bullet_and_wall;
     double distance_bullet_and_edge_of_wall[4];// 0: Up 1: Down 2: Left 3: Right
-    //double angle_tank_and_edge_of_wall;
 
     for (i = 0; i < map->number_of_walls; i++){
         if (i == bullet->previous_collided_wall_index)
@@ -274,7 +259,8 @@ int bullet_tank_collision(Bullet * bullet, Map * map){
         for (int i = 0; i <= 1; i++) {
             distance_bullet_tank = sqrt(pow(map->tanks[i].x - bullet->x, 2) + pow(map->tanks[i].y - bullet->y, 2));
             if (distance_bullet_tank <= map->tanks[i].radius + bullet->radius) {
-                bullet->lifetime = -1;
+                // check the next line's change carefully.
+                bullet->lifetime = 0;
                 map->tanks[1 - i].score++;
                 locate_tanks(map);
                 return collision;
@@ -282,4 +268,64 @@ int bullet_tank_collision(Bullet * bullet, Map * map){
         }
     }
     return no_collision;
+}
+
+
+void save_game(Map * map, char * file_path){
+    FILE * save_info = fopen(file_path, "w");
+    // Walls' coordinates
+    fprintf(save_info, "%d\n", map->number_of_walls);
+    for (int i=0; i<map->number_of_walls; i++)
+        fprintf(save_info, "%d %d %d %d\n", map->walls[i].x1 / map_scale, map->walls[i].y1 / map_scale, map->walls[i].x2 / map_scale, map->walls[i].y2 / map_scale);
+    for (int i=0; i<=1; i++) {
+        // Tanks' info
+        fprintf(save_info, "%d %d %d ", map->tanks[i].x, map->tanks[i].y, map->tanks[i].score);
+        fprintf(save_info, "%d %d %f %f %d\n", map->tanks[i].remaining_bullets, map->tanks[i].index, map->tanks[i].radius, map->tanks[i].thickness, map->tanks[i].mine_index);
+        // Tank's bullets
+        for (int j=0; j<Primary_Bullets-map->tanks[i].remaining_bullets; j++) {
+            fprintf(save_info, "%d %d %d ", map->tanks[i].bullets[j].lifetime, map->tanks[i].bullets[j].x, map->tanks[i].bullets[j].y);
+            fprintf(save_info, "%f %f %d\n", map->tanks[i].bullets[j].angle, map->tanks[i].bullets[j].radius, map->tanks[i].bullets[j].previous_collided_wall_index);
+        }
+    }
+    // Mines' info
+    fprintf(save_info, "%d\n", map->index_of_last_assigned_mine);
+    for (int i = 0; i <= map->index_of_last_assigned_mine; i++){
+        fprintf(save_info, "%d %d %d ", map->mines[i].index, map->mines[i].x, map->mines[i].y);
+        fprintf(save_info, "%f %d %d ", map->mines[i].radius, map->mines[i].interval_between_appear_and_pick, map->mines[i].countdown_before_next_mine);
+        fprintf(save_info, "%d %d %d %d\n", map->mines[i].picker_tank, map->mines[i].is_planted, map->mines[i].lifetime_after_plant, map->mines[i].explosion_countdown);
+    }
+    fclose(save_info);
+}
+
+void load_game(SDL_Window ** window, SDL_Renderer ** renderer, Map * map, char * file_path){
+    SDL_DestroyWindow(*window);
+    int cursor_set;
+    FILE * load_info = fopen(file_path, "r");
+    //for (int i=0; i<map->number_of_walls; i++)
+    //    free(&map->walls[i]);
+    read_map_and_init_mapsize(map, file_path, &map->width, &map->height);
+    // Next line is only written to move cursor of scanning info to proper location in the file of saved game.
+    for (int i = 1; i <= 4 * map->number_of_walls + 1; i++)
+        fscanf(load_info, "%d", &cursor_set);
+    for (int i=0; i<=1; i++) {
+        // Tanks' info
+        fscanf(load_info, "%d %d %d ", &map->tanks[i].x, &map->tanks[i].y, &map->tanks[i].score);
+        fscanf(load_info, "%d %d %lf %lf %d ", &map->tanks[i].remaining_bullets, &map->tanks[i].index, &map->tanks[i].radius, &map->tanks[i].thickness, &map->tanks[i].mine_index);
+        // Tanks' bullets
+        for (int j = 0; j < Primary_Bullets - map->tanks[i].remaining_bullets; j++) {
+            fscanf(load_info, "%d %d %d ", &map->tanks[i].bullets[j].lifetime, &map->tanks[i].bullets[j].x, &map->tanks[i].bullets[j].y);
+            fscanf(load_info, "%lf %lf %d ", &map->tanks[i].bullets[j].angle, &map->tanks[i].bullets[j].radius, &map->tanks[i].bullets[j].previous_collided_wall_index);
+        }
+    }
+    // Mines' info
+    fscanf(load_info, "%d", &map->index_of_last_assigned_mine);
+    for (int i = 0; i <= map->index_of_last_assigned_mine; i++){
+        fscanf(load_info, "%d %d %d ", &map->mines[i].index, &map->mines[i].x, &map->mines[i].y);
+        fscanf(load_info, "%lf %d %d ", &map->mines[i].radius, &map->mines[i].interval_between_appear_and_pick, &map->mines[i].countdown_before_next_mine);
+        fscanf(load_info, "%d %d %d %d ", &map->mines[i].picker_tank, &map->mines[i].is_planted, &map->mines[i].lifetime_after_plant, &map->mines[i].explosion_countdown);
+    }
+    //make_mine(map);
+    fclose(load_info);
+    *window = SDL_CreateWindow("FoP_Project", 30, 30, map->width, map->height, SDL_WINDOW_OPENGL);
+    *renderer = SDL_CreateRenderer(*window, -1, SDL_RENDERER_ACCELERATED);
 }

@@ -9,6 +9,40 @@
 #include "logic.h"
 #include "structs.h"
 
+void init_window(SDL_Renderer * renderer){
+    SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
+}
+
+// Map of the game can be changed by modifying the destination of file containing desired map
+// in the second argument when calling function of "read_map_and_init_mapsize" in the function of "main".
+void read_map_and_init_mapsize(Map * map, char * file_path, int * map_width, int * map_height){
+    int max_height = 0, max_width = 0;
+    FILE * map_file_pointer = fopen(file_path, "r");
+    int temp;
+    fscanf(map_file_pointer, "%d", &temp);
+    map->number_of_walls = temp;
+    map->walls = malloc(map->number_of_walls * sizeof(Wall));
+
+    for (int i=0; i<map->number_of_walls; i++){
+        fscanf(map_file_pointer, "%d", &temp);
+        map->walls[i].x1 = temp * map_scale;
+        fscanf(map_file_pointer, "%d", &temp);
+        map->walls[i].y1 = temp * map_scale;
+        fscanf(map_file_pointer, "%d", &temp);
+        map->walls[i].x2 = temp * map_scale;
+        if (map->walls[i].x2 > max_width)
+            max_width = map->walls[i].x2;
+        fscanf(map_file_pointer, "%d", &temp);
+        map->walls[i].y2 = temp * map_scale;
+        if (map->walls[i].y2 > max_height)
+            max_height = map->walls[i].y2;
+    }
+    *map_width = max_width + 1;
+    *map_height = max_height + 1;
+    fclose(map_file_pointer);
+    //free(temp);
+}
+
 void init_tanks(Map * map){
     /*
     do {
@@ -30,7 +64,9 @@ void init_tanks(Map * map){
     }
 }
 
-void init_mine(int mine_index, Map * map){
+void make_mine(Map * map){
+    // Declaration of a help variable in the next line is only used to shorten the length of other lines in this function.
+    int mine_index = map->index_of_last_assigned_mine;
     map->mines[mine_index].index = mine_index;
     map->mines[mine_index].x = correct_mod(rand(), map->width - 2 * (int)map->mines[mine_index].radius) + (int)map->mines[mine_index].radius;
     map->mines[mine_index].y = correct_mod(rand(), map->height - 2 * (int)map->mines[mine_index].radius) + (int)map->mines[mine_index].radius;
@@ -40,7 +76,7 @@ void init_mine(int mine_index, Map * map){
     map->mines[mine_index].picker_tank = -1;
     map->mines[mine_index].is_planted = 0;
     map->mines[mine_index].lifetime_after_plant = -1;
-    map->mines[mine_index].explosion_countdown = inactive_mine;
+    map->mines[mine_index].explosion_countdown = not_activated_mine_yet;
 }
 
 void draw_tank(SDL_Renderer * renderer ,Tank * tank){
@@ -58,6 +94,10 @@ void draw_tank(SDL_Renderer * renderer ,Tank * tank){
 }
 
 void draw_bullet(SDL_Renderer * renderer, Bullet * bullet, Map * map){
+    char * buffer = malloc(30 * sizeof(char));
+    sprintf(buffer, "%d %d %lf %d", bullet->x, bullet->y, bullet->angle, bullet->previous_collided_wall_index);
+    printf("%s\n", buffer);
+    stringRGBA(renderer, 40, 40, buffer, 0,0,0,255);
     filledCircleRGBA(renderer, bullet->x, bullet->y, bullet->radius, 0, 0, 0, 255);
     move_bullet(bullet, map);
 }
@@ -71,13 +111,8 @@ void draw_walls(SDL_Renderer * renderer, Wall * walls, int number_of_walls){
 void draw_mine(SDL_Renderer * renderer, Mine * mine, Map * map){
     explode_mine(mine, map);
     if (mine->explosion_countdown >= 0){
-        char buffer[20];
-        sprintf(buffer, "%d", mine->explosion_countdown);
-        stringRGBA(renderer, 30, 30, buffer, 0,0,0,255);
         filledCircleRGBA(renderer, mine->x, mine->y, mine->radius, 255, 165, 0, 255);
         mine->explosion_countdown --;
-        //if (mine->explosion_countdown == -1)
-        //    mine->explosion_countdown = expired_mine;
     }
     else if (mine->interval_between_appear_and_pick > 0 && mine->picker_tank == -1) {
         filledCircleRGBA(renderer, mine->x, mine->y, mine->radius, 255, 255, 0, 255);
@@ -93,10 +128,6 @@ void draw_mine(SDL_Renderer * renderer, Mine * mine, Map * map){
             locate_mine(mine, map);
         }
     }
-}
-
-void init_window(SDL_Renderer * renderer){
-    SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
 }
 
 void quit_window(SDL_Window * window, SDL_Renderer * renderer){
@@ -118,7 +149,6 @@ int menu(SDL_Window * window, SDL_Renderer * renderer, char call_from, Map * map
     quit.x = map->width / 2 - buttons_width / 2;    quit.y = map->height * 7 / 10;
 
     SDL_Event event;
-
     while (1){
         SDL_SetRenderDrawColor(renderer, 10, 80, 80, 255);
         SDL_RenderClear(renderer);
@@ -150,7 +180,9 @@ int menu(SDL_Window * window, SDL_Renderer * renderer, char call_from, Map * map
                             return new_game_in_start_menu;
                         else if (call_from == 'h')
                             return new_game_in_pause_menu;
-                    //case SDLK_l:
+                        break;
+                    case SDLK_l:
+                        return load_game_in_menu;
                     case SDLK_q:
                         return Exit;
                 }
@@ -164,7 +196,7 @@ int game_over(SDL_Renderer * renderer, Map * map, int beginning_of_time){
     int final_screen_width = map->width / 3, final_screen_height = map->height * 4 / 10;
     int final_screen_x = map->width / 2 - final_screen_width / 2, final_screen_y = map->height / 2 - final_screen_height / 2;
     int current_time = SDL_GetTicks();
-    char banner_buffer[30];
+    char banner_buffer[40];
     SDL_Event event;
 
     while (1){
@@ -195,7 +227,6 @@ int game_over(SDL_Renderer * renderer, Map * map, int beginning_of_time){
 }
 
 int handle_events(SDL_Window * window, SDL_Renderer * renderer, Map * map, int arrow_keys[2][4]){
-    // 'F':forward 'B':backward
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT)
@@ -272,6 +303,9 @@ int handle_events(SDL_Window * window, SDL_Renderer * renderer, Map * map, int a
                         fire(&map->tanks[1]);
                     else
                         plant_mine(&map->tanks[1], map);
+                    break;
+                case SDLK_b:
+                    save_game(map, "D:\\Amir Abbas's Documents\\FoP\\FoP_Project\\src\\saved_game.txt");
             }
         }
     }
