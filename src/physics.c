@@ -81,8 +81,8 @@ void move_bullet(Bullet * bullet, Map * map){
 }
 
 void locate_mine(Mine * mine, Map * map){
-    mine->x = correct_mod(rand(), map->width - (int)mine->radius) + (int)mine->radius;
-    mine->y = correct_mod(rand(), map->height - (int)mine->radius) + (int)mine->radius;
+    mine->x = correct_mod(rand(), map->width - 2 * (int)mine->radius) + (int)mine->radius;
+    mine->y = correct_mod(rand(), map->height - 2 * (int)mine->radius) + (int)mine->radius;
 }
 
 void pick_mine(Tank * tank, Map * map){
@@ -110,7 +110,6 @@ void plant_mine(Tank * tank, Map * map){
     tank->mine_index = -1;
 }
 
-// Probably next function should be called in draw_mine with or without(?) loop on all the mines.
 void explode_mine(Mine * mine, Map *map){
     double distance_tank_and_mine, threshold_distance;
     if (mine->is_planted == 1) {
@@ -120,6 +119,7 @@ void explode_mine(Mine * mine, Map *map){
             if (mine->is_planted == 1 && mine->lifetime_after_plant > 0 && mine->explosion_countdown == not_activated_mine_yet)
                 mine->explosion_countdown = explosion_delay;
             else if (mine->explosion_countdown == 0) {
+                mine->lifetime_after_plant = 0;
                 map->tanks[mine->picker_tank].score ++;
                 locate_tanks(map);
             }
@@ -130,10 +130,10 @@ void explode_mine(Mine * mine, Map *map){
 int fire(Tank * tank) {
     if (tank->remaining_bullets > 0) {
         tank->bullets [Primary_Bullets - tank->remaining_bullets].lifetime = Bullet_Primary_Lifetime;
-        tank->bullets [Primary_Bullets - tank->remaining_bullets].x = tank->x + (bullet_radius + tank->radius + 1) * cos((tank->angle) / 180.0*pi);
-        tank->bullets [Primary_Bullets - tank->remaining_bullets].y = tank->y + (bullet_radius + tank->radius + 1) * sin((tank->angle) / 180.0*pi);
+        tank->bullets [Primary_Bullets - tank->remaining_bullets].radius = 4.0;
+        tank->bullets [Primary_Bullets - tank->remaining_bullets].x = tank->x + (4.0 + tank->radius + 1) * cos((tank->angle) / 180.0*pi);
+        tank->bullets [Primary_Bullets - tank->remaining_bullets].y = tank->y + (4.0 + tank->radius + 1) * sin((tank->angle) / 180.0*pi);
         tank->bullets [Primary_Bullets - tank->remaining_bullets].angle = tank->angle;
-        tank->bullets [Primary_Bullets - tank->remaining_bullets].radius = bullet_radius;
         tank->bullets [Primary_Bullets - tank->remaining_bullets].previous_collided_wall_index = -1;
         //About previous line: Previous collided wall is meaningless just after firing a bullet.
         tank->remaining_bullets -= 1;

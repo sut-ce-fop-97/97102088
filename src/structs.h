@@ -35,8 +35,7 @@ typedef struct {
     Wall * walls;
     Mine * mines;
     int number_of_walls;
-    int width;
-    int height;
+    int width, height;
     int index_of_last_assigned_mine;
 } Map;
 

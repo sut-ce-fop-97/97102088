@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
@@ -13,7 +14,7 @@ void init_window(SDL_Renderer * renderer){
     SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
 }
 
-// Map of the game can be changed by modifying the destination of file containing desired map
+// Map of the new game can be changed by modifying the directory of file containing desired map
 // in the second argument when calling function of "read_map_and_init_mapsize" in the function of "main".
 void read_map_and_init_mapsize(Map * map, char * file_path, int * map_width, int * map_height){
     int max_height = 0, max_width = 0;
@@ -40,16 +41,9 @@ void read_map_and_init_mapsize(Map * map, char * file_path, int * map_width, int
     *map_width = max_width + 1;
     *map_height = max_height + 1;
     fclose(map_file_pointer);
-    //free(temp);
 }
 
 void init_tanks(Map * map){
-    /*
-    do {
-        tank->x = correct_mod(rand(), map_width);
-        tank->y = correct_mod(rand(), map_height);
-    } while (movement_collides_walls(tank, map, 'F') != no_collision);
-    */
     locate_tanks(map);
     for (int i=0; i<=1; i++) {
         map->tanks[i].score = 0;
@@ -68,14 +62,12 @@ void make_mine(Map * map){
     // Declaration of a help variable in the next line is only used to shorten the length of other lines in this function.
     int mine_index = map->index_of_last_assigned_mine;
     map->mines[mine_index].index = mine_index;
-    map->mines[mine_index].x = correct_mod(rand(), map->width - 2 * (int)map->mines[mine_index].radius) + (int)map->mines[mine_index].radius;
-    map->mines[mine_index].y = correct_mod(rand(), map->height - 2 * (int)map->mines[mine_index].radius) + (int)map->mines[mine_index].radius;
-    map->mines[mine_index].radius = mine_radius;
+    locate_mine(&map->mines[mine_index], map);
+    map->mines[mine_index].radius = 10.0;
     map->mines[mine_index].interval_between_appear_and_pick = 0;
     map->mines[mine_index].countdown_before_next_mine = time_between_consecutive_mines;
     map->mines[mine_index].picker_tank = -1;
     map->mines[mine_index].is_planted = 0;
-    map->mines[mine_index].lifetime_after_plant = -1;
     map->mines[mine_index].explosion_countdown = not_activated_mine_yet;
 }
 
@@ -94,10 +86,6 @@ void draw_tank(SDL_Renderer * renderer ,Tank * tank){
 }
 
 void draw_bullet(SDL_Renderer * renderer, Bullet * bullet, Map * map){
-    char * buffer = malloc(30 * sizeof(char));
-    sprintf(buffer, "%d %d %lf %d", bullet->x, bullet->y, bullet->angle, bullet->previous_collided_wall_index);
-    printf("%s\n", buffer);
-    stringRGBA(renderer, 40, 40, buffer, 0,0,0,255);
     filledCircleRGBA(renderer, bullet->x, bullet->y, bullet->radius, 0, 0, 0, 255);
     move_bullet(bullet, map);
 }
@@ -141,35 +129,55 @@ void quit_window(SDL_Window * window, SDL_Renderer * renderer){
     }
 }
 
-int menu(SDL_Window * window, SDL_Renderer * renderer, char call_from, Map * map){
-    int buttons_width = map->width / 3, buttons_height = map->height * 2 / 10;
-    Button new_game, load, quit;
-    new_game.x = map->width / 2 - buttons_width / 2;    new_game.y = map->height * 1 / 10;
-    load.x = map->width / 2 - buttons_width / 2;    load.y = map->height * 4 / 10;
-    quit.x = map->width / 2 - buttons_width / 2;    quit.y = map->height * 7 / 10;
+int menu(SDL_Renderer * renderer, char call_from, Map * map){
+    int buttons_width = 250, buttons_height = window_height / 10;
+    Button esc, new_game, save, load, quit;
+    esc.x = window_width / 2 - buttons_width / 2;    esc.y = buttons_height * 1;
+    new_game.x = window_width / 2 - buttons_width / 2;    new_game.y = buttons_height * 5 / 2;
+    save.x = window_width / 2 - buttons_width / 2;    save.y = buttons_height * 4;
+    load.x = window_width / 2 - buttons_width / 2;    load.y = buttons_height * 11 / 2;
+    quit.x = window_width / 2 - buttons_width / 2;    quit.y = buttons_height * 7;
 
     SDL_Event event;
     while (1){
-        SDL_SetRenderDrawColor(renderer, 10, 80, 80, 255);
+        SDL_SetRenderDrawColor(renderer, 10, 80, 80, 50);
         SDL_RenderClear(renderer);
 
+        stringRGBA(renderer, 10 + horizontal_margin_for_text, buttons_height * 2, "Arrow keys for first player: Up, Down, Right, Left", 0, 0, 0, 255);
+        stringRGBA(renderer, 10 + horizontal_margin_for_text, buttons_height * 5 / 2, "Fire key for first player: slash", 0, 0, 0, 255);
+        stringRGBA(renderer, 10 + horizontal_margin_for_text, buttons_height * 3, "************************************************", 255, 0, 0, 255);
+        stringRGBA(renderer, 10 + horizontal_margin_for_text, buttons_height * 7 / 2, "Arrow keys for second player: W, A, S, D", 0, 0, 0, 255);
+        stringRGBA(renderer, 10 + horizontal_margin_for_text, buttons_height * 4, "Fire key for second player: E", 0, 0, 0, 255);
+
+        if (call_from == 'h') {
+            boxRGBA(renderer, esc.x, esc.y, esc.x + buttons_width, esc.y + buttons_height, 150, 50,
+                    0, 255);
+            char first_banner[40] = "Press Esc to continue the game.";
+            stringRGBA(renderer, new_game.x + horizontal_margin_for_text, esc.y + buttons_height / 2, first_banner,
+                       0, 0, 0, 255);
+        }
+
         boxRGBA(renderer, new_game.x, new_game.y, new_game.x + buttons_width, new_game.y + buttons_height, 150, 50, 0, 255);
-        char* first_banner = "Press G to start a new game.";
-        stringRGBA(renderer, new_game.x + horizontal_margin_for_text, new_game.y + buttons_height / 2, first_banner, 0, 0, 0, 255);
+        char second_banner[30] = "Press G to start a new game.";
+        stringRGBA(renderer, new_game.x + horizontal_margin_for_text, new_game.y + buttons_height / 2, second_banner, 0, 0, 0, 255);
+
+        boxRGBA(renderer, save.x, save.y, save.x + buttons_width, save.y + buttons_height, 150, 50, 0, 255);
+        char third_banner[40] = "Press B to save the game.";
+        stringRGBA(renderer, save.x + horizontal_margin_for_text, save.y + buttons_height / 2, third_banner, 0, 0, 0, 255);
 
         boxRGBA(renderer, load.x, load.y, load.x + buttons_width, load.y + buttons_height, 150, 50, 0, 255);
-        char* second_banner = "Press L to load the last game.";
-        stringRGBA(renderer, load.x + horizontal_margin_for_text, load.y + buttons_height / 2, second_banner, 0, 0, 0, 255);
+        char fourth_banner[40] = "Press L to load the last game.";
+        stringRGBA(renderer, load.x + horizontal_margin_for_text, load.y + buttons_height / 2, fourth_banner, 0, 0, 0, 255);
 
         boxRGBA(renderer, quit.x, quit.y, quit.x + buttons_width, quit.y + buttons_height, 150, 50, 0, 255);
-        char* third_banner = "Press Q to quit the game.";
-        stringRGBA(renderer, quit.x + horizontal_margin_for_text, quit.y + buttons_height / 2, third_banner, 0, 0, 0, 255);
+        char fifth_banner[40] = "Press Q to quit the game.";
+        stringRGBA(renderer, quit.x + horizontal_margin_for_text, quit.y + buttons_height / 2, fifth_banner, 0, 0, 0, 255);
 
         SDL_RenderPresent(renderer);
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT)
                 return Exit;
-            else if (event.type == SDL_KEYDOWN) {
+            else if (event.type == SDL_KEYUP) {
                 switch (event.key.keysym.sym) {
                     case SDLK_ESCAPE:
                         if (call_from == 'h')
@@ -180,6 +188,9 @@ int menu(SDL_Window * window, SDL_Renderer * renderer, char call_from, Map * map
                             return new_game_in_start_menu;
                         else if (call_from == 'h')
                             return new_game_in_pause_menu;
+                        break;
+                    case SDLK_b:
+                        save_game(map, "D:\\Amir Abbas's Documents\\FoP\\FoP_Project\\src\\saved_game.txt");
                         break;
                     case SDLK_l:
                         return load_game_in_menu;
@@ -193,8 +204,8 @@ int menu(SDL_Window * window, SDL_Renderer * renderer, char call_from, Map * map
 }
 
 int game_over(SDL_Renderer * renderer, Map * map, int beginning_of_time){
-    int final_screen_width = map->width / 3, final_screen_height = map->height * 4 / 10;
-    int final_screen_x = map->width / 2 - final_screen_width / 2, final_screen_y = map->height / 2 - final_screen_height / 2;
+    int final_screen_width = window_width / 3, final_screen_height = window_height / 3;
+    int final_screen_x = window_width / 2 - final_screen_width / 2, final_screen_y = window_height / 2 - final_screen_height / 2;
     int current_time = SDL_GetTicks();
     char banner_buffer[40];
     SDL_Event event;
@@ -205,6 +216,9 @@ int game_over(SDL_Renderer * renderer, Map * map, int beginning_of_time){
 
         boxRGBA(renderer, final_screen_x, final_screen_y, final_screen_x + final_screen_width,
                 final_screen_y + final_screen_height, 0, 200, 50, 255);
+        strcpy(banner_buffer, "Game Over!");
+        stringRGBA(renderer, final_screen_x + horizontal_margin_for_text, final_screen_y + 10, banner_buffer, 0, 0, 0, 255);
+
         sprintf(banner_buffer, "Elapsed Time is: %d seconds", (current_time - beginning_of_time) / 1000);
         stringRGBA(renderer, final_screen_x + horizontal_margin_for_text, final_screen_y + final_screen_height / 2 - 20, banner_buffer, 0, 0, 0, 255);
 
@@ -226,15 +240,13 @@ int game_over(SDL_Renderer * renderer, Map * map, int beginning_of_time){
     }
 }
 
-int handle_events(SDL_Window * window, SDL_Renderer * renderer, Map * map, int arrow_keys[2][4]){
+int handle_events(SDL_Renderer * renderer, Map * map, int arrow_keys[2][4]){
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT)
             return Exit;
         else if (event.type == SDL_KEYDOWN){
             switch (event.key.keysym.sym){
-                case SDLK_ESCAPE:
-                    return menu(window, renderer, 'h', map);
                 // Movement Keys of first tank
                 case SDLK_UP:
                     arrow_keys[0][0] = 1;
@@ -260,12 +272,13 @@ int handle_events(SDL_Window * window, SDL_Renderer * renderer, Map * map, int a
                     break;
                 case SDLK_d:
                     arrow_keys[1][3] = 1;
-                    //break;
             }
         }
         else if (event.type == SDL_KEYUP){
             switch (event.key.keysym.sym){
-                // Keys of first tank movement
+                case SDLK_ESCAPE:
+                    return menu(renderer, 'h', map);
+                    // Movement Keys of first tank
                 case SDLK_UP:
                     arrow_keys[0][0] = 0;
                     break;
@@ -278,7 +291,7 @@ int handle_events(SDL_Window * window, SDL_Renderer * renderer, Map * map, int a
                 case SDLK_RIGHT:
                     arrow_keys[0][3] = 0;
                     break;
-                // Keys of second tank movement
+                // Movement Keys of second tank
                 case SDLK_w:
                     arrow_keys[1][0] = 0;
                     break;
