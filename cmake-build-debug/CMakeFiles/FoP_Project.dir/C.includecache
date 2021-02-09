@@ -590,16 +590,14 @@ close_code.h
 
 ../sdl2/sdl2-include/close_code.h
 
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/logic.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/logic.h
 
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/main.c
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/physics.c
 stdio.h
 -
 stdbool.h
 -
 stdlib.h
--
-string.h
 -
 math.h
 -
@@ -608,21 +606,21 @@ SDL.h
 SDL2_gfxPrimitives.h
 -
 view.h
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/view.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/view.h
 physics.h
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/physics.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/physics.h
 logic.h
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/logic.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/logic.h
 structs.h
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/structs.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/structs.h
 
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/physics.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/physics.h
 structs.h
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/structs.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/structs.h
 
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/structs.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/structs.h
 
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/view.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/view.h
 structs.h
-/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/src/structs.h
+/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/structs.h
 

@@ -8,101 +8,101 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="FoP_Project">
-				<Option output="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/cmake-build-debug/FoP_Project.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/sdl2/sdl2-include"/>
-					<Add directory="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/sdl2/sdl2-gfx-include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.3.0/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.3.0/../../../../lib/../include/w32api"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 FoP_Project"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="FoP_Project/fast">
-				<Option output="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/cmake-build-debug/FoP_Project.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/sdl2/sdl2-include"/>
-					<Add directory="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/sdl2/sdl2-gfx-include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.3.0/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.3.0/../../../../lib/../include/w32api"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 FoP_Project/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/FoP/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FoP_Project">
+				<Option output="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/cmake-build-debug/FoP_Project.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/sdl2/sdl2-include"/>
+					<Add directory="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/sdl2/sdl2-gfx-include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 FoP_Project"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FoP_Project/fast">
+				<Option output="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/cmake-build-debug/FoP_Project.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/sdl2/sdl2-include"/>
+					<Add directory="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/sdl2/sdl2-gfx-include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/10/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 FoP_Project/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/Amir\ Abbas&apos;s\ Documents/Bachelor&apos;s\ Courses/1st\ Semester/Fundamentals\ of\ Programming/FoP_Project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/logic.c">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/logic.c">
 			<Option target="FoP_Project"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/logic.h">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/logic.h">
 			<Option target="FoP_Project"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/main.c">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/main.c">
 			<Option target="FoP_Project"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/physics.c">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/physics.c">
 			<Option target="FoP_Project"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/physics.h">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/physics.h">
 			<Option target="FoP_Project"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/structs.h">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/structs.h">
 			<Option target="FoP_Project"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/view.c">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/view.c">
 			<Option target="FoP_Project"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/src/view.h">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/src/view.h">
 			<Option target="FoP_Project"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/FoP/FoP_Project/CMakeLists.txt">
+		<Unit filename="/cygdrive/d/Amir Abbas&apos;s Documents/Bachelor&apos;s Courses/1st Semester/Fundamentals of Programming/FoP_Project/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -1,11 +1,11 @@
-C:\Users\Lenovo\.CLion2018.3\system\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project"
--- The C compiler identification is GNU 7.3.0
+C:\Users\Asgari\AppData\Local\JetBrains\CLion2020.3\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project"
+-- The C compiler identification is GNU 10.2.0
 -- Check for working C compiler: /usr/bin/cc
--- Check for working C compiler: /usr/bin/cc -- works
+-- Check for working C compiler: /usr/bin/cc - works
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
 -- Detecting C compile features
 -- Detecting C compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /cygdrive/d/Amir Abbas's Documents/FoP/FoP_Project/cmake-build-debug
+-- Build files have been written to: /cygdrive/d/Amir Abbas's Documents/Bachelor's Courses/1st Semester/Fundamentals of Programming/FoP_Project/cmake-build-debug

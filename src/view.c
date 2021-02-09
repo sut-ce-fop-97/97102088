@@ -1,14 +1,11 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 #include <SDL.h>
 #include <SDL2_gfxPrimitives.h>
 #include "physics.h"
 #include "view.h"
 #include "logic.h"
-#include "structs.h"
 
 void init_window(SDL_Renderer * renderer){
     SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
@@ -190,7 +187,7 @@ int menu(SDL_Renderer * renderer, char call_from, Map * map){
                             return new_game_in_pause_menu;
                         break;
                     case SDLK_b:
-                        save_game(map, "D:\\Amir Abbas's Documents\\FoP\\FoP_Project\\src\\saved_game.txt");
+                        save_game(map, "../src/saved_game.txt");
                         break;
                     case SDLK_l:
                         return load_game_in_menu;
@@ -318,7 +315,7 @@ int handle_events(SDL_Renderer * renderer, Map * map, int arrow_keys[2][4]){
                         plant_mine(&map->tanks[1], map);
                     break;
                 case SDLK_b:
-                    save_game(map, "D:\\Amir Abbas's Documents\\FoP\\FoP_Project\\src\\saved_game.txt");
+                    save_game(map, "../src/saved_game.txt");
             }
         }
     }

@@ -3,8 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/FoP_Project.dir/src/main.c.o"
   "CMakeFiles/FoP_Project.dir/src/physics.c.o"
   "CMakeFiles/FoP_Project.dir/src/view.c.o"
-  "FoP_Project.pdb"
   "FoP_Project.exe"
+  "FoP_Project.pdb"
   "libFoP_Project.dll.a"
 )
 
